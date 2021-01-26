@@ -10,4 +10,5 @@ void ft_putstr(char *str)
 		write(1, &str[index], 1);
 		index++;
 	}
+	write(1, "\0", 1);
 }
