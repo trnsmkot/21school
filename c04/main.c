@@ -13,7 +13,7 @@
 int main()
 {
 
-	ft_putnbr(-2147483647);
+	ft_putnbr(0034);
 
 //	printf("%d\n", ft_atoi_base("op", "poneyvif"));
 //	printf("%d\n", ft_atoi_base("010101odf02", "01"));
