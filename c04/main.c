@@ -13,10 +13,10 @@
 int main()
 {
 
+	ft_putnbr(-2147483647);
 
-
-	printf("%d\n", ft_atoi_base("op", "poneyvif"));
-	printf("%d\n", ft_atoi_base("010101odf02", "01"));
+//	printf("%d\n", ft_atoi_base("op", "poneyvif"));
+//	printf("%d\n", ft_atoi_base("010101odf02", "01"));
 //	printf("%d", ft_atoi_base("343434dfdfdf", "0123456789ABCDEF"));
 //	printf("|%d|", isspace('\t'));
 //	printf("|%d|", ft_atoi(" \n   ++---+423sf-234"));
