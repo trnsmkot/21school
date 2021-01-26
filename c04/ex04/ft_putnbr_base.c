@@ -51,3 +51,7 @@ void ft_putnbr_base(int nbr, char *base)
 		write(1, &buffer[buff_index], 33 - buff_index);
 	}
 }
+
+int main() {
+	ft_putnbr_base(9876, "poneyvif");
+}

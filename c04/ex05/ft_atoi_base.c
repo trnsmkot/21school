@@ -3,22 +3,6 @@
 	◦ base contains the same character twice ;
 	◦ base contains + or - or whitespaces;
 */
-int is_isspace(char ch)
-{
-	char *line;
-	int index;
-
-	index = 0;
-	line = "\t\n\v\f\r ";
-	while (line[index] != '\0')
-	{
-		if (line[index] == ch)
-			return (1);
-		index++;
-	}
-	return (0);
-}
-
 int check_base(char *base)
 {
 	int i;
@@ -30,7 +14,9 @@ int check_base(char *base)
 		j = i + 1;
 		while (base[j] != '\0')
 		{
-			if (base[j] == '+' || base[j] == '-' || is_isspace(base[j]) || base[i] == base[j])
+			if (base[j] < 33 || base[i] == base[j]) 
+				return (0);
+			if (base[j] == '+' || base[j] == '-')
 				return (0);
 			j++;
 		}
@@ -92,11 +78,13 @@ int ft_atoi_base(char *str, char *base)
 	int buffer[32] = {};
 
 	index = 0;
-	if ((base_count = check_base(base)))
+	base_count = check_base(base);
+	if (base_count > 0)
 	{
 		while (str[index] != '\0')
 		{
-			if ((index_base = is_base(base, str[index])) >= 0)
+			index_base = is_base(base, str[index]);
+			if (index_base >= 0)
 				buffer[index] = index_base;
 			else
 				break;
@@ -107,4 +95,5 @@ int ft_atoi_base(char *str, char *base)
 	return (0);
 }
 
+inr
 
