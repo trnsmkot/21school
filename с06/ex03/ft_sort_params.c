@@ -3,6 +3,7 @@
  * One argument per line
  */
 #include <unistd.h>
+#include <stdio.h>
 
 void swap(char **left, char **right)
 {
@@ -24,38 +25,60 @@ int is_left_greater(char *left, char *right)
 			return (1);
 		index++;
 	}
+	if (left[index] != '\0' && right[index] == '\0')
+		return (1);
 	return (0);
 }
 
-void sort_argv(char **argv[], int idx, int size)
+int sort_argv(char *argv[], int index, int size)
 {
-	int index;
 	int was_swap;
 
 	was_swap = 0;
-	index = 1;
-	while (index < size - 2)
+	while (index < size - 1)
 	{
-		if (is_left_greater(*argv[index], *argv[index]))
+		if (is_left_greater(argv[index], argv[index + 1]))
 		{
-//			swap(argv[index], argv[index + 1]);
-//			was_swap = 1;
+			swap(&argv[index], &argv[index + 1]);
+			was_swap = 1;
 		}
 		index++;
 	}
-//	if (was_swap)
-//		sort_argv(argv, idx, size);
+	return (was_swap);
 }
 
 int main(int argc, char *argv[])
 {
 	int index;
 	int arg_index;
+	int need_sort;
 
 	if (argc < 2)
 		return (0);
 	arg_index = 1;
-	sort_argv(&argv, arg_index, argc);
+	need_sort = 1;
+//	while (need_sort)
+//		need_sort = sort_argv(argv, 1, argc);
+//		need_sort = sort_argv(argv, 1, argc);
+//		need_sort = sort_argv(argv, 1, argc);
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+printf("%d-", sort_argv(argv, 1, argc));
+
 	while (arg_index < argc)
 	{
 		index = 0;
