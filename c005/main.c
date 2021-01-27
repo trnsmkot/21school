@@ -8,6 +8,7 @@ int ft_fibonacci(int index);
 int ft_sqrt(int nb);
 int ft_is_prime(int nb);
 int ft_find_next_prime(int nb);
+int ft_ten_queens_puzzle(void);
 
 int main()
 {
@@ -26,7 +27,8 @@ int main()
 //	printf("%d\n", ft_is_prime(2147483647));
 
 //  ex - 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131
-	printf("%d\n", ft_find_next_prime(3));
+//	printf("%d\n", ft_find_next_prime(3));
+	printf("%d\n", ft_ten_queens_puzzle());
 
 	return 0;
 }
