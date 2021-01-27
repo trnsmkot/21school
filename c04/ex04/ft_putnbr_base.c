@@ -31,27 +31,28 @@ void ft_putnbr_base(int nbr, char *base)
 {
 	int sign;
 	int base_count;
-	char buffer[32] = {};
+	char buffer[32];
 	int buff_index;
 
 	buff_index = 32;
 	sign = 1;
 	if (nbr < 0)
-		nbr *= (sign = -1);
+		sign = -1;
 	if ((base_count = check_base(base)))
 	{
-		while (nbr > 0)
+		while (nbr != 0)
 		{
-			buffer[buff_index] = base[nbr % base_count];
+			buffer[buff_index] = base[sign * (nbr % base_count)];
 			nbr = nbr / base_count;
 			buff_index--;
 		}
 		if (sign < 0)
 			write(1, "-", 1);
-		write(1, &buffer[buff_index], 33 - buff_index);
+		write(1, &buffer[buff_index], 33 - buff_index );
 	}
 }
 
 int main() {
 	ft_putnbr_base(9876, "poneyvif");
+	ft_putnbr_base(-2147483648, "0123456789");
 }
