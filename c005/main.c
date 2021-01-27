@@ -22,13 +22,16 @@ int main()
 	// 0, 1, 1, 2, 3, 5, 8, 13,     21, 34, 55, 89
 	// index 7 == 13
 //	printf("%d\n", ft_fibonacci(40));
-//	printf("%d\n", ft_sqrt(31 * 30));
+	printf("%d\n", ft_sqrt(2025000000));
+	printf("%d\n", ft_sqrt(1));
+	printf("%d\n", ft_sqrt(-3));
+	printf("%d\n", ft_sqrt(2147483647));
 
 //	printf("%d\n", ft_is_prime(2147483647));
 
 //  ex - 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131
 //	printf("%d\n", ft_find_next_prime(3));
-	printf("%d\n", ft_ten_queens_puzzle());
+//	printf("%d\n", ft_ten_queens_puzzle());
 
 	return 0;
 }
