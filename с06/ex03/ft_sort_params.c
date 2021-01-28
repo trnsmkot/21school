@@ -23,14 +23,17 @@ int is_left_greater(char *left, char *right)
 	{
 		if (left[index] > right[index])
 			return (1);
-		index++;
+		else if (left[index] == right[index])
+			index++;
+		else
+			return (0);
 	}
 	if (left[index] != '\0' && right[index] == '\0')
 		return (1);
 	return (0);
 }
 
-int sort_argv(char *argv[], int index, int size)
+int sort_argv(char **argv, int index, int size)
 {
 	int was_swap;
 
@@ -57,28 +60,8 @@ int main(int argc, char *argv[])
 		return (0);
 	arg_index = 1;
 	need_sort = 1;
-//	while (need_sort)
-//		need_sort = sort_argv(argv, 1, argc);
-//		need_sort = sort_argv(argv, 1, argc);
-//		need_sort = sort_argv(argv, 1, argc);
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-printf("%d-", sort_argv(argv, 1, argc));
-
+	while (need_sort)
+		need_sort = sort_argv(argv, 1, argc);
 	while (arg_index < argc)
 	{
 		index = 0;
