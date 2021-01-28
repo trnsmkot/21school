@@ -10,7 +10,7 @@ char *ft_strdup(char *src)
 		index++;
 	new_src = malloc(sizeof(*new_src) * index);
 	if (new_src == NULL)
-		return new_src;
+		return NULL;
 	index = 0;
 	while (src[index] != '\0')
 	{
