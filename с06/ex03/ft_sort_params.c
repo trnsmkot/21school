@@ -3,7 +3,6 @@
  * One argument per line
  */
 #include <unistd.h>
-#include <stdio.h>
 
 void swap(char **left, char **right)
 {
