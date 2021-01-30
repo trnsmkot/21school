@@ -1,19 +1,40 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-char *ft_strdup(char *src);
+char	*ft_strdup(char *src)
+{
+	char	*dst;
+	int		i;
 
-int *ft_range(int min, int max);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		i++;
+	}
+	dst = (char *)malloc(sizeof(char) * (i + 1));
+	if (dst == NULL)
+	{
+		return (NULL);
+	}
+	else
+		i = -1;
+	while (src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
 
-int ft_ultimate_range(int **range, int min, int max);
-
-char *ft_strjoin(int size, char **strs, char *sep);
 
 int main()
 {
 //	char *str = "sdfdsfd";
 //	printf("%p\n", str);
 //
-//	char *new = ft_strdup("0123456789");
+	char *new = ft_strdup("0123456789");
+	printf("%s ", new);
 //	printf("%p - \"%s\"\n", new, new);
 
 //	int arr[5] = {1, 2, 3, 4, 5};
@@ -27,10 +48,10 @@ int main()
 
 //	int *range2[] = NULL;
 
-//	while (*p)
+//	while (*new)
 //	{
-//		printf("%d ", *p);
-//		p++;
+//		printf("%d ", *new);
+//		new++;
 //	}
 
 //	if (range == NULL)
@@ -62,9 +83,9 @@ int main()
 //		}
 //	}
 
-	char *string[] = {"123", "456", "789"};
-	char *str = ft_strjoin(3, string, "|");
-	printf("%s", str);
+//	char *string[] = {"123", "456", "789"};
+//	char *str = ft_strjoin(3, string, "|");
+//	printf("%s", str);
 //	printf("\n");
 
 	return 0;

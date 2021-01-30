@@ -8,7 +8,7 @@ char *ft_strdup(char *src)
 	index = 0;
 	while (src[index] != '\0')
 		index++;
-	new_src = malloc(sizeof(*new_src) * index);
+	new_src = malloc(sizeof(*new_src) * (index + 1));
 	if (new_src == NULL)
 		return (NULL);
 	index = 0;
