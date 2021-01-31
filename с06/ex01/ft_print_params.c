@@ -1,9 +1,12 @@
 #include <unistd.h>
+#include <stdio.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	int index;
 	int arg_index;
+
+	printf("(%s)", argv[1]);
 
 	if (argc > 1)
 	{

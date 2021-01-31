@@ -5,4 +5,4 @@ set(CMAKE_C_STANDARD 99)
 #set(GCC_COVERAGE_COMPILE_FLAGS "-Wall -Wextra -Werror")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
 
-add_executable(06 main.c)
+add_executable(06 ex01/ft_print_params.c)
