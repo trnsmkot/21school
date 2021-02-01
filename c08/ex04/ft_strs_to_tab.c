@@ -30,7 +30,7 @@ struct s_stock_str *ft_strs_to_tab(int ac, char **av)
 	int len;
 	char *copy;
 
-	stock = malloc(sizeof(struct s_stock_str) * (ac + 1));
+	stock = (struct s_stock_str *) malloc(sizeof(struct s_stock_str) * (ac + 1));
 	if (stock == NULL)
 		return (NULL);
 	index = 0;

@@ -34,7 +34,7 @@ void ft_show_tab(struct s_stock_str *par)
 	int index;
 
 	index = 0;
-	while (par[index].str[0] != '\0')
+	while (par[index].str != 0)
 	{
 		ft_putstr(par[index].str);
 		write(1, "\n", 1);
