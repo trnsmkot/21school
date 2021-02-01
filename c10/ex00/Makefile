@@ -9,7 +9,7 @@ CFLAGS		= -Wall -Wextra -Werror
 .c.o:		gcc ${CFLAGS} -I${H_FILES} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			
+			gcc ${CFLAGS} -I${H_FILES} ${OBJ_FILES} main.c -o ${NAME}
 			#gcc ${CFLAGS} -I${H_FILES} ${NAME}
 			#ar rc ${NAME} ${SRC_DIR}/*.o
 			#runlib ${NAME}
