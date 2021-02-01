@@ -8,10 +8,8 @@ CFLAGS		= -Wall -Wextra -Werror
 
 .c.o:		gcc ${CFLAGS} -I${H_FILES} -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}
+all:		${OBJS}
 			gcc ${CFLAGS} -I${H_FILES} ${OBJ_FILES} -o ${NAME}
-
-all:		${NAME}
 
 clean:
 			rm -f ${OBJ_FILES}
