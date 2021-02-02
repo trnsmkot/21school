@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 		}
 		while ((read_byte = read(fd, buffer, BYTE_COUNT)) != 0)
 			ft_put_substr(buffer, read_byte);
-		close(fd);
+		return (close(fd));
 	}
 	return (0);
 }
