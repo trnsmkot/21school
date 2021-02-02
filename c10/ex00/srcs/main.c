@@ -2,12 +2,12 @@
 #include <fcntl.h>
 #include <zconf.h>
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	(void) argc;
-	char buffer[BYTE_COUNT];
-	int fd;
-	int read_byte;
+	(void) 	argc;
+	char	buffer[BYTE_COUNT];
+	int		fd;
+	int		read_byte;
 
 	if (argc < 2)
 		ft_putstr("File name missing.\n");

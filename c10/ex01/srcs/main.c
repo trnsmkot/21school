@@ -5,26 +5,26 @@
 #include <errno.h>
 #include <string.h>
 
-void ft_print_error(int code)
+void	ft_print_error(int code)
 {
 	ft_putstr(strerror(code));
 }
 
-int ft_print_content(int buff_size)
+int		ft_print_content(int buff_size)
 {
-	char buffer[buff_size];
-	int read_byte;
+	char	buffer[buff_size];
+	int		read_byte;
 
 	while ((read_byte = read(STDIN_FILENO, buffer, buff_size)) != 0)
 		ft_put_substr(buffer, read_byte);
 	return (close(STDIN_FILENO));
 }
 
-int ft_print_file_content(char *file, int buff_size)
+int		ft_print_file_content(char *file, int buff_size)
 {
-	char buffer[buff_size];
-	int fd;
-	int read_byte;
+	char	buffer[buff_size];
+	int		fd;
+	int		read_byte;
 
 	ft_fill_str(buffer, buff_size);
 	if ((fd = open(file, O_RDONLY)) == -1)
@@ -39,7 +39,7 @@ int ft_print_file_content(char *file, int buff_size)
 	return (close(fd));
 }
 
-int main(int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
 	int index;
 	int code;
