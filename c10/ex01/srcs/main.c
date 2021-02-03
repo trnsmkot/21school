@@ -5,6 +5,18 @@
 #include <errno.h>
 #include <string.h>
 
+void	ft_fill_str(char *buffer, int size)
+{
+	int count;
+
+	count = 0;
+	while (count < size)
+	{
+		buffer[count] = '\0';
+		count++;
+	}
+}
+
 void	ft_print_error(int code)
 {
 	ft_putstr(strerror(code));

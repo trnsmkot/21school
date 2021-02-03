@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stass <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/02 23:15:22 by stass             #+#    #+#             */
+/*   Updated: 2021/02/02 23:15:23 by stass            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft.h"
+#include "../includes/ft_1.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <zconf.h>
@@ -21,24 +34,6 @@ int		ft_open_file(char *file)
 void	ft_print_error(int code)
 {
 	ft_putstr(strerror(code));
-}
-
-void	ft_shift_char(char *str, int str_size, int shift)
-{
-	int index;
-
-	index = 0;
-	while (index < str_size - shift)
-	{
-		str[index] = str[shift + index];
-		index++;
-	}
-	index = 0;
-	while (index < str_size - shift)
-	{
-		str[str_size - shift + index] = '\0';
-		index++;
-	}
 }
 
 void	ft_shift_str(char *str, int str_size, const char *buffer, int size)

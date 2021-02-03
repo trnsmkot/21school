@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stass <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/02 23:01:16 by stass             #+#    #+#             */
-/*   Updated: 2021/02/02 23:01:22 by stass            ###   ########.fr       */
+/*   Created: 2021/02/02 23:02:17 by stass             #+#    #+#             */
+/*   Updated: 2021/02/02 23:02:20 by stass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
-# define BYTE_COUNT 255
+void	ft_fill_str(char *buffer, int size)
+{
+	int count;
 
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
-void	ft_fill_str(char *str, int size);
-void	ft_put_substr(char *str, int size);
+	count = 0;
+	while (count < size)
+	{
+		buffer[count] = '\0';
+		count++;
+	}
+}
 
-#endif
+void	ft_swap(int *a, int *b)
+{
+	int c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
+}

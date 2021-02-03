@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.c                                               :+:      :+:    :+:   */
+/*   ft_1.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stass <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/02 23:02:04 by stass             #+#    #+#             */
-/*   Updated: 2021/02/02 23:02:07 by stass            ###   ########.fr       */
+/*   Created: 2021/02/02 23:15:15 by stass             #+#    #+#             */
+/*   Updated: 2021/02/02 23:15:17 by stass            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ void	ft_putstr(char *str)
 	}
 }
 
-void	ft_put_substr(char *buffer, int size)
-{
-	write(1, buffer, size);
-}
-
 int		ft_strcmp(char *s1, char *s2)
 {
 	int index;
@@ -42,14 +37,4 @@ int		ft_strcmp(char *s1, char *s2)
 	while (s1[index] == s2[index] && s1[index] != '\0' && s2[index] != '\0')
 		index++;
 	return (s1[index] - s2[index]);
-}
-
-int		ft_strlen(char *str)
-{
-	int count;
-
-	count = 0;
-	while (str[count] != '\0')
-		count++;
-	return (count);
 }

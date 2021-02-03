@@ -41,24 +41,3 @@ int		ft_strlen(char *str)
 		count++;
 	return (count);
 }
-
-void	ft_swap(int *a, int *b)
-{
-	int c;
-
-	c = *a;
-	*a = *b;
-	*b = c;
-}
-
-void	ft_fill_str(char *buffer, int size)
-{
-	int count;
-
-	count = 0;
-	while (count < size)
-	{
-		buffer[count] = '\0';
-		count++;
-	}
-}

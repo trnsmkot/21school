@@ -1,7 +1,7 @@
 SRC_DIR 	= ./srcs
 SRC_FILES 	= $(shell find $(SRC_DIR) -type f -name "*.c")
 OBJ_FILES 	= $(shell find $(SRC_DIR) -type f -name "*.o")
-H_FILES 	= ./includes/ft.h
+H_FILES 	= ./includes
 OBJS 		= ${SRC_FILES:.c=.o}
 NAME 		= ft_cat
 CFLAGS		= -Wall -Wextra -Werror

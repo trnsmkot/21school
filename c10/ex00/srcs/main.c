@@ -1,4 +1,5 @@
 #include "../includes/ft.h"
+#include "../includes/ft_1.h"
 #include <fcntl.h>
 #include <zconf.h>
 

@@ -1,5 +1,5 @@
 SRC_DIR 	= ./srcs
-SRC_FILES 	= $(wildcard $(SRC_DIR)/*.c)
+SRC_FILES 	= $(wildcard $(SRC_DIR)/*.c) # shell find -name "dfdf/.*c"
 OBJ_FILES 	= $(wildcard $(SRC_DIR)/*.o)
 H_FILES 	= ./includes/ft.h
 OBJS 		= ${SRC_FILES:.c=.o}
