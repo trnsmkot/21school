@@ -3,7 +3,7 @@
 
 void ft_foreach(int *tab, int length, void(*f)(int));
 int *ft_map(int *tab, int length, int(*f)(int));
-int ft_any(char **tab, int(*f)(char *));
+//int ft_any(char **tab, int(*f)(char *));
 int ft_is_sort(int *tab, int length, int(*f)(int, int));
 
 void ft_putnbr(int num)
@@ -25,15 +25,15 @@ int ft_putnbr2(int num)
 
 int ft_check_str(char *str)
 {
-	int index = 0;
-	while (str[index] != '\0')
-	{
-		if (str[index] == '1')
-		{
-			return (1);
-		}
-		index++;
-	}
+//	int index = 0;
+//	while (str[index] != '\0')
+//	{
+//		if (str[index] == '1')
+//		{
+//			return (1);
+//		}
+//		index++;
+//	}
 	return (0);
 }
 
@@ -45,9 +45,23 @@ int ft_check_sort(int left, int right)
 	return (0);
 }
 
+int	ft_any(char **tab, int (*f)(char*))
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (f(tab[i++]))
+			return (1);
+	}
+	return (0);
+}
+
 int main(int argc, char *argv[])
 {
-
+	char *tab[2] = {"abc", "223"};
+	printf("%d", ft_any(tab, &ft_check_str));
 
 //	argv[1] = 42amis
 //	argv[2] = -
@@ -61,9 +75,9 @@ int main(int argc, char *argv[])
 //	ft_foreach(ft_map(tab, 5, &ft_putnbr2), 5, &ft_putnbr);
 //	char *tab[3] = {"abc", "123"};
 
-	int tab[5] = {2, 2, 3, 4, 5};
+//	int tab[5] = {2, 2, 3, 4, 5};
 //	int tab[5] = {5, 3, 2, 1, 1};
-	printf("%d", ft_is_sort(tab, 5, &ft_check_sort));
+//	printf("%d", ft_is_sort(tab, 5, &ft_check_sort));
 
 	return 0;
 }

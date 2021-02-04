@@ -9,6 +9,6 @@ typedef struct s_list
 	void *data;
 } t_list;
 
-struct s_list	*ft_create_elem(void *data);
+void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 
 #endif

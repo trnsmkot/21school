@@ -10,7 +10,7 @@ t_list *ft_list_push_strs(int size, char **strs)
 	element = NULL;
 	while (index < size)
 	{
-		next_element = ft_create_elem(strs[index]);
+		next_element = ft_list_push_strs(strs[index]);
 		if (element == NULL)
 			element = next_element;
 		else

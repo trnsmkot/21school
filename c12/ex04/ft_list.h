@@ -9,6 +9,6 @@ typedef struct s_list
 	void *data;
 } t_list;
 
-t_list	*ft_create_elem(void *data);
+struct s_list	*ft_create_elem(void *data);
 
 #endif
