@@ -3,23 +3,13 @@
 
 t_list *ft_create_elem(void *data);
 
-void ft_list_push_back(t_list **begin_list, void *data)
+void ft_list_push_front(t_list **begin_list, void *data)
 {
-	t_list *element;
-	t_list *last_element;
+	t_list *new_element;
 
-	element = ft_create_elem(data);
-	if (element == NULL)
-		return;
-	if (*begin_list == NULL)
-	{
-		*begin_list = element;
-		return;
-	}
-	last_element = *begin_list;
-	while (last_element->next != NULL)
-		last_element = last_element->next;
-	last_element->next = element;
+	new_element = ft_create_elem(data);
+	new_element->next = *begin_list;
+	*begin_list = new_element;
 }
 
 int main()
@@ -33,9 +23,9 @@ int main()
 //	t_list el1 = {&el2, "123"};
 //	t_list el0 = {&el1, "000"};
 
-	t_list *list = &el3;
+	t_list *list = &el2;
 
-	ft_list_push_back(&list, "23");
+	ft_list_push_front(&list, "23");
 	printf("%s\n", list->data);
 	printf("%s\n", list->next->data);
 

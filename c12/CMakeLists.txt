@@ -10,6 +10,7 @@ add_executable(c12 main.c
 #        ex01/ft_list_push_front.c
         ex09/ft_list_foreach.c
 #        ex04/ft_list_push_back.c
+        ex05/ft_list_push_strs.c
         ex10/ft_list_foreach_if.c
         ex11/ft_list_find.c
         ex12/ft_list_remove_if.c)
