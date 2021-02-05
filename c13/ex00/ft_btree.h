@@ -1,6 +1,7 @@
 #ifndef FT_BTREE_H
 
 # define FT_BTREE_H
+# include <stdlib.h>
 
 typedef struct s_btree
 {
