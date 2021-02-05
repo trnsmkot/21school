@@ -12,6 +12,8 @@ void ft_list_push_front(t_list **begin_list, void *data)
 	*begin_list = new_element;
 }
 
+
+
 int main()
 {
 //	void *data;

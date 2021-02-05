@@ -10,6 +10,5 @@ typedef struct s_btree
 } t_btree;
 
 t_btree *btree_create_node(void *item);
-void btree_insert_data(t_btree **root, void *item, int (*cmpf)(void *, void *));
 
 #endif

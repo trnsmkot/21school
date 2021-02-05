@@ -9,4 +9,6 @@ typedef struct s_btree
 	void *item;
 } t_btree;
 
+int btree_level_count(t_btree *root);
+
 #endif

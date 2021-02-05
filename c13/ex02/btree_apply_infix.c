@@ -1,4 +1,5 @@
 #include "ft_btree.h"
+
 // infix traversal -  Inorder (Left, Root, Right) : 4 2 5 1 3
 // Центрированный тип обхода (Inorder traversal)
 // Сначала посетите все узлы в левом поддереве
