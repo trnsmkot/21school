@@ -6,6 +6,18 @@ int ft_open_file(char *file)
 	return (open(file, O_RDONLY));
 }
 
+void ft_fill_str(char *str, int size)
+{
+	int index;
+
+	index = 0;
+	while (index < size)
+	{
+		str[index] = '\0';
+		index++;
+	}
+}
+
 d_str *create_str_elem(const char *line, int from, int size)
 {
 	int index;
@@ -29,54 +41,175 @@ d_str *create_str_elem(const char *line, int from, int size)
 	return (list);
 }
 
-int get_line_value_size(d_str *dstr, d_str **d_value)
+int get_line_path_size(d_str *dstr, d_str **d_value, int is_key)
 {
 	d_str *element;
 	int size;
-	int was_sep;
 
-	was_sep = 0;
 	size = 0;
 	element = dstr;
+	*d_value = dstr;
 	while (element != 0)
 	{
 		if (element->size == 1 && element->value[0] == ':')
 		{
-			was_sep = 1;
-			*d_value = element->next;
+			if (!is_key)
+			{
+				size = -1;
+				*d_value = element->next;
+			}
+			else
+				return (size);
 		}
-		if (was_sep)
-			size += element->size;
+		size += element->size;
 		element = element->next;
 	}
 	return (size);
 }
 
-void get_num_value(char *value, d_str *dstr)
+void convert_key_to_d(char *line, d_str *str)
 {
+	int index;
+	int sub_idx;
+	d_str *element;
+	char ch;
 
+	index = 0;
+	element = str;
+	while (element)
+	{
+		sub_idx = 0;
+		while (sub_idx < element->size)
+		{
+			ch = element->value[sub_idx];
+			if (ch == ':')
+				return;
+			if (ch != ' ' && ch != '\0' && ch != '\n')
+			{
+				line[index] = ch;
+				index++;
+			}
+			sub_idx++;
+		}
+		element = element->next;
+	}
+}
+
+void convert_value_to_d(char *line, d_str *str)
+{
+	int index;
+	int sub_idx;
+	d_str *element;
+	char ch;
+	int space;
+
+	space = 0;
+	index = 0;
+	element = str;
+	while ((element))
+	{
+		sub_idx = 0;
+		while (sub_idx < element->size)
+		{
+			if (((ch = element->value[sub_idx]) != ' ' || space) && ch != '\0' && ch != '\n')
+			{
+				line[index] = ch;
+				index++;
+				space = 1;
+			}
+			sub_idx++;
+		}
+		element = element->next;
+	}
+}
+
+void free_d_str(d_str *dstr)
+{
+	d_str *element;
+	d_str *next_element;
+
+	next_element = dstr;
+	while (next_element)
+	{
+		element = next_element;
+		next_element = next_element->next;
+		free(element->value);
+		free(element);
+	}
+}
+
+void add_divs_to_ranges(d_number *number, int index, int index_div, int size_div)
+{
+	int sum;
+
+	while (index_div < size_div)
+	{
+		sum = 0;
+		sum = (sum * 10) + (number->key[index] - '0');
+		sum = (sum * 10) + (number->key[index + 1] - '0');
+		sum = (sum * 10) + (number->key[index + 2] - '0');
+		number->ranges[index_div] = sum;
+		index_div++;
+		index += 3;
+	}
+}
+
+void add_num_to_ranges(d_number *number)
+{
+	int index;
+	int size_div;
+	int size_mod;
+	int sum;
+
+	sum = 0;
+	index = 0;
+	size_mod = number->size % 3;
+	size_div = number->size / 3;
+	number->size = size_div + (size_mod > 0);
+	number->ranges = (int *) malloc(sizeof(int) * number->size);
+	while (index < size_mod)
+	{
+		sum = (sum * 10) + (number->key[index] - '0');
+		index++;
+	}
+	if (size_mod > 0)
+		number->ranges[0] = sum;
+	add_divs_to_ranges(number, index, size_mod > 0, size_div + (size_mod > 0 && size_div > 0));
+}
+
+void convert_str_t_ranges(d_number **num)
+{
+	d_number *number;
+
+	number = *num;
+	if (number)
+	{
+		number->size = ft_strlen(number->key);
+		add_num_to_ranges(number);
+	}
 }
 
 d_number *create_num_elem(d_str *dstr)
 {
 	d_number *num;
-	d_number *d_value;
+	d_str *d_value;
+	d_str *d_key;
+	int size_v;
+	int size_k;
 
-	d_value = 0;
 	num = (d_number *) malloc(sizeof(d_number));
 	if (num)
 	{
-		num->value = (char *) malloc(sizeof(char) * (get_line_value_size(dstr, &d_value) + 1));
-		(d_value) ? printf("    create_num_elem: %s\n", d_value->value) : 0;
-//		d_value->value;
-//		get_num_value();
-//		while (index < size)
-//		{
-//			list->value[index] = line[index];
-//			index++;
-//		}
-//		list->value[index] = '\0';
-//		num->size = size;
+		size_k = get_line_path_size(dstr, &d_key, 1) + 1;
+		size_v = get_line_path_size(dstr, &d_value, 0) + 1;
+		num->key = (char *) malloc(sizeof(char) * size_k);
+		num->value = (char *) malloc(sizeof(char) * size_v);
+		ft_fill_str(num->key, size_k);
+		ft_fill_str(num->value, size_v);
+		convert_key_to_d(num->key, d_key);
+		convert_value_to_d(num->value, d_value);
+		free_d_str(d_key);
+		convert_str_t_ranges(&num);
 		num->next = 0;
 	}
 	return (num);
@@ -116,18 +249,6 @@ int get_char_idx(const char *str, char sep)
 	return (-1);
 }
 
-void ft_fill_str(char *str, int size)
-{
-	int index;
-
-	index = 0;
-	while (index < size)
-	{
-		str[index] = '\0';
-		index++;
-	}
-}
-
 void ft_number_push_back(d_number **numbers, d_str *line)
 {
 	d_number *number;
@@ -144,21 +265,7 @@ void ft_number_push_back(d_number **numbers, d_str *line)
 	while (last_num->next != 0)
 		last_num = last_num->next;
 	last_num->next = number;
-//	free(line->value); // освобождаем память
-	free(line);
 	line = 0; // обнуляем
-}
-
-char *get_substr(const char *str, int index)
-{
-	int idx;
-
-	idx = 0;
-	while (idx < index)
-	{
-		idx++;
-	}
-	return (&str[idx]);
 }
 
 void process_read_data(d_str **list, d_number **numbers, const char *buffer, int size)
@@ -192,7 +299,7 @@ void process_read_data(d_str **list, d_number **numbers, const char *buffer, int
 		ft_list_push_back(list, buffer, start, end_idx - start);
 
 		ft_number_push_back(numbers, *list);
-		printf("  ft_number_push_back: (%s) |%s|\n", buffer, (*list)->value);
+//		printf("  ft_number_push_back: (%s) |%s|\n", buffer, (*list)->value);
 		*list = create_str_elem(buffer, end_idx + 1, size - (end_idx + 1));
 	}
 }

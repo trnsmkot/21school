@@ -5,13 +5,14 @@
 
 # define RUSH_H
 //# define DEFAULT_DICT_PATH "numbers.dict"
-# define DEFAULT_DICT_PATH "/Users/hedgi/CLionProjects/21school/rush02/numbers_1.dict"
+# define DEFAULT_DICT_PATH "/Users/hedgi/CLionProjects/21school/rush02/numbers.dict"
 # define BYTE_COUNT 2
 
 typedef struct dict_number
 {
 	int size;
 	int *ranges;
+	char *key;
 	char *value;
 	struct dict_number *next;
 } d_number;
@@ -27,6 +28,14 @@ d_number *parse_dictionary(char *path);
 
 d_number *parse_number(char *path);
 
-int convert_number(d_number *dictionary, d_number *number);
+void convert_str_t_ranges(d_number **num);
+
+d_str *create_str_elem(const char *line, int from, int size);
+
+d_str *convert_number(d_number *dictionary, d_number *number);
+
+int ft_strlen(char *str);
+
+void ft_putstr(char *str);
 
 #endif

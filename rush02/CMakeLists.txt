@@ -9,4 +9,6 @@ add_executable(rush02
         src/main.c
         src/parse_dictionary.c
         src/parse_number.c
+        src/ft_strlen.c
+        src/ft_putstr.c
         src/convert_number.c)
