@@ -9,19 +9,14 @@ char *find_value_from_dict(d_number *dictionary, int num, int range_size, int is
 	while (item)
 	{
 		if (range_size > 1 && item->size == range_size)
-		{
 			printf("%s ", item->value);
-		}
-
 		if (item->size == 1 && item->ranges[0] == num)
 		{
-			if (range_size  == 1 || num != 0)
+			if (range_size == 1 || num != 0)
 				printf("%s ", item->value);
 		}
 		if (is_100 && item->size == 1 && item->ranges[0] == 100)
-		{
 			printf("%s ", item->value);
-		}
 
 		item = item->next;
 	}
