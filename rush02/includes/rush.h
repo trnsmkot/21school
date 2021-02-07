@@ -5,8 +5,8 @@
 
 # define RUSH_H
 //# define DEFAULT_DICT_PATH "numbers.dict"
-# define DEFAULT_DICT_PATH "/Users/stass/_github/rush02/numbers.dict"
-# define BYTE_COUNT 10
+# define DEFAULT_DICT_PATH "/Users/hedgi/CLionProjects/21school/rush02/numbers_1.dict"
+# define BYTE_COUNT 2
 
 typedef struct dict_number
 {
