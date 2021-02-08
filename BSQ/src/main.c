@@ -182,22 +182,6 @@ int fill_matrix(char **matrix, t_settings *settings, char *file)
 			index++;
 		}
 	}
-
-
-//	i = 0;
-//	j = 0;
-//
-//	while (i < settings->height)
-//	{
-//		j = 0;
-//		while (j < settings->width)
-//		{
-//			matrix[i][j] = settings->empty;
-//			j++;
-//		}
-//		i++;
-//	}
-
 	return close(fd);
 }
 
@@ -212,6 +196,7 @@ void ft_print_filled_map(char **matrix, t_settings *settings)
 	while (i < settings->height)
 	{
 		j = 0;
+		printf("%d: ", i);
 		while (j < settings->width)
 		{
 			printf("%c", matrix[i][j]);
@@ -220,6 +205,75 @@ void ft_print_filled_map(char **matrix, t_settings *settings)
 		printf("\n");
 		i++;
 	}
+}
+
+void ft_echo_in_map(char **matrix, t_settings *settings, int i, int j)
+{
+	int offset;
+	int height;
+	int width;
+	int index_i;
+	int index_j;
+
+	height = settings->height - i - 1;
+	width = settings->width - j - 1;
+	offset = 1;
+	while (offset < height && offset < width)
+	{
+		index_i = 0;
+		while (index_i <= offset)
+		{
+			index_j = 0;
+			while (index_j <= offset)
+			{
+				if (matrix[i + index_i][j + index_j] != settings->empty)
+					return;
+				index_j++;
+			}
+			index_i++;
+		}
+		settings->max_size = offset + 1;
+		offset++;
+	}
+
+}
+
+void ft_scan_map(char **matrix, t_settings *settings)
+{
+	int i;
+	int j;
+	t_settings *tmp_settings;
+
+	tmp_settings = (t_settings *) malloc(sizeof(t_settings));
+
+	tmp_settings->empty = settings->empty;
+	tmp_settings->obstacle = settings->obstacle;
+	tmp_settings->height = settings->height;
+	tmp_settings->width = settings->width;
+	i = 0;
+	while (i < settings->height)
+	{
+		j = 0;
+		while (j < settings->width)
+		{
+			if (matrix[i][j] == settings->empty)
+			{
+				tmp_settings->max_size = 1;
+				tmp_settings->y = i;
+				tmp_settings->x = j;
+				ft_echo_in_map(matrix, tmp_settings, i, j);
+				if (tmp_settings->max_size > settings->max_size) {
+					settings->max_size = tmp_settings->max_size;
+					settings->y = tmp_settings->y;
+					settings->x = tmp_settings->x;
+				}
+
+			}
+			j++;
+		}
+		i++;
+	}
+	printf("size: %d, y:%d, x:%d\n", settings->max_size, settings->y, settings->x);
 }
 
 // 2147483647
@@ -236,9 +290,25 @@ void ft_print_map(char *file)
 	if (fill_matrix(matrix, settings, file) != 0)
 	{
 		printf("map error\n");
-	} else {
+	}
+	else
+	{
 		ft_print_filled_map(matrix, settings);
-		// TODO
+		ft_scan_map(matrix, settings);
+		int i = 0;
+		int j = 0;
+		while (i < settings->max_size)
+		{
+			j = 0;
+			while (j < settings->max_size)
+			{
+				matrix[settings->y + i][settings->x + j] = settings->full;
+				j++;
+			}
+			i++;
+		}
+
+		ft_print_filled_map(matrix, settings);
 	}
 }
 
