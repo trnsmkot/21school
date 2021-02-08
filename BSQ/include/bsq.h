@@ -1,8 +1,27 @@
-//
-// Created by Vladislav Kasatkin on 08.02.2021.
-//
+#ifndef BSQ_H
+# define BSQ_H
 
-#ifndef BSQ_BSQ_H
-#define BSQ_BSQ_H
+# include <unistd.h>
 
-#endif //BSQ_BSQ_H
+# define BYTE_COUNT 15
+
+typedef struct s_settings
+{
+	char empty;
+	char obstacle;
+	char full;
+	int x;
+	int y;
+	int max_size;
+	int width;
+	int height;
+} t_settings;
+
+// str_lib.c
+void ft_fill_str(char *buffer, int size);
+int	ft_strlen(char *str);
+int ft_index_of(const char *str, char ch, int index);
+int	ft_strcmp(char *s1, char *s2);
+void ft_putstr(char *str);
+
+#endif

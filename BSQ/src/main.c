@@ -25,7 +25,7 @@ int ft_get_num(const char *buffer, int size)
 	index = 0;
 	while (index < size)
 	{
-		if (buffer[index] <= '0' || buffer[index] >= '9')
+		if (buffer[index] < '0' || buffer[index] > '9')
 			return (0);
 		sum = (sum * 10) + (buffer[index] - '0');
 		index++;
@@ -144,8 +144,6 @@ void fill_empty_matrix(char **matrix, t_settings *settings)
 
 int fill_matrix(char **matrix, t_settings *settings, char *file)
 {
-
-	(void) settings;
 	int fd;
 	char *buffer;
 	int read_bytes;
@@ -158,6 +156,7 @@ int fill_matrix(char **matrix, t_settings *settings, char *file)
 
 	if ((fd = ft_try_open_file(file)) < 0)
 		return (1);
+
 	buffer = (char *) malloc(sizeof(char) * (BYTE_COUNT + 1));
 	ft_fill_str(buffer, BYTE_COUNT);
 	while ((read_bytes = read(fd, buffer, BYTE_COUNT)) != 0)
@@ -172,6 +171,10 @@ int fill_matrix(char **matrix, t_settings *settings, char *file)
 			}
 			else if (n_count >= 0)
 			{
+				if (m_index > settings->width - 1 || n_count > settings->height - 1)
+				{
+					return (1);
+				}
 				matrix[n_count][m_index] = buffer[index];
 				m_index++;
 			}
@@ -198,24 +201,12 @@ int fill_matrix(char **matrix, t_settings *settings, char *file)
 	return close(fd);
 }
 
-// 2147483647
-void ft_print_map(char *file)
+void ft_print_filled_map(char **matrix, t_settings *settings)
 {
-	t_settings *settings;
-	char **matrix;
-
-	settings = (t_settings *) malloc(sizeof(t_settings));
-	ft_get_settings(&settings, file);
-	matrix = malloc_matrix(settings);
-//	fill_empty_matrix(matrix, settings);
-//	fill_matrix(matrix, settings, file);
-
-
-
-	printf("%d %d [%c] [%c] [%c]\n", settings->height, settings->width, settings->empty, settings->obstacle, settings->full);
-
 	int i;
 	int j;
+
+	printf("%d %d [%c] [%c] [%c]\n", settings->height, settings->width, settings->empty, settings->obstacle, settings->full);
 
 	i = 0;
 	while (i < settings->height)
@@ -229,8 +220,26 @@ void ft_print_map(char *file)
 		printf("\n");
 		i++;
 	}
+}
 
+// 2147483647
+void ft_print_map(char *file)
+{
+	t_settings *settings;
+	char **matrix;
 
+	settings = (t_settings *) malloc(sizeof(t_settings));
+	ft_get_settings(&settings, file);
+	matrix = malloc_matrix(settings);
+	fill_empty_matrix(matrix, settings);
+
+	if (fill_matrix(matrix, settings, file) != 0)
+	{
+		printf("map error\n");
+	} else {
+		ft_print_filled_map(matrix, settings);
+		// TODO
+	}
 }
 
 int main(int argc, char *argv[])
