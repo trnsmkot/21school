@@ -13,8 +13,8 @@ typedef struct s_settings
 	int x;
 	int y;
 	int max_size;
-	int width;
-	int height;
+	unsigned long width;
+	unsigned long height;
 } t_settings;
 
 // str_lib.c

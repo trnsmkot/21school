@@ -43,6 +43,7 @@ int ft_parse_settings(t_settings **settings, char *buffer)
 	{
 		if ((size = ft_index_of(buffer, '\n', 0)) < 0)
 			return (0);
+
 		sett->empty = buffer[size - 3];
 		sett->obstacle = buffer[size - 2];
 		sett->full = buffer[size - 1];
@@ -93,7 +94,7 @@ void ft_get_settings(t_settings **sett, char *file)
 	if ((fd = ft_try_open_file(file)) < 0)
 		return;
 
-	buffer = (char *) malloc(sizeof(char) * (BYTE_COUNT + 1));
+	buffer = (char *) malloc(sizeof(char) * BYTE_COUNT);
 	ft_fill_str(buffer, BYTE_COUNT);
 	n_count = 0;
 	while ((read_bytes = read(fd, buffer, BYTE_COUNT)) != 0)
@@ -103,6 +104,8 @@ void ft_get_settings(t_settings **sett, char *file)
 		if (n_count > 1)
 			break;
 	}
+
+	free(buffer); // TODO
 	close(fd);
 }
 
@@ -182,6 +185,7 @@ int fill_matrix(char **matrix, t_settings *settings, char *file)
 			index++;
 		}
 	}
+	free(buffer);
 	return close(fd);
 }
 
@@ -273,6 +277,7 @@ void ft_scan_map(char **matrix, t_settings *settings)
 		}
 		i++;
 	}
+	free(tmp_settings);
 	printf("size: %d, y:%d, x:%d\n", settings->max_size, settings->y, settings->x);
 }
 
@@ -283,6 +288,8 @@ void ft_print_map(char *file)
 	char **matrix;
 
 	settings = (t_settings *) malloc(sizeof(t_settings));
+	settings->height = 0;
+	settings->width = 0;
 	ft_get_settings(&settings, file);
 	matrix = malloc_matrix(settings);
 	fill_empty_matrix(matrix, settings);
@@ -315,7 +322,7 @@ void ft_print_map(char *file)
 int main(int argc, char *argv[])
 {
 	argc = 2;
-	argv[1] = "/Users/hedgi/CLionProjects/21school/BSQ/map.txt";
+	argv[1] = "/Users/stass/_github2/BSQ/map.txt";
 
 	int index;
 
