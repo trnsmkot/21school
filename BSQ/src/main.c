@@ -85,6 +85,16 @@ int ft_print_map(char *file)
 	}
 }
 
+int		ft_print_content(int buff_size)
+{
+	char	buffer[buff_size];
+	int		read_byte;
+
+	while ((read_byte = read(STDIN_FILENO, buffer, buff_size)) != 0)
+		ft_put_substr(buffer, read_byte);
+	return (close(STDIN_FILENO));
+}
+
 int main(int argc, char *argv[])
 {
 	argc = 3;
@@ -102,6 +112,8 @@ int main(int argc, char *argv[])
 				ft_putstr("map error\n");
 			index++;
 		}
+	} else {
+
 	}
 	return 0;
 }
