@@ -37,7 +37,7 @@ int ft_get_min(int item_1, int item_2, int item_3)
 
 void ft_fill_num(int *buffer, unsigned long size)
 {
-	int index;
+	unsigned long index;
 
 	index = 0;
 	while (index < size)

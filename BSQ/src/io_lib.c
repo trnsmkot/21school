@@ -11,7 +11,7 @@ int ft_try_open_file(char *file)
 
 int **malloc_matrix(t_settings *settings)
 {
-	int index;
+	unsigned long index;
 	int **matrix;
 
 	matrix = (int **) malloc(sizeof(int *) * settings->height);
@@ -27,8 +27,8 @@ int **malloc_matrix(t_settings *settings)
 
 void fill_empty_matrix(int **matrix, t_settings *settings)
 {
-	int i;
-	int j;
+	unsigned long i;
+	unsigned long  j;
 
 	i = 0;
 	while (i < settings->height)

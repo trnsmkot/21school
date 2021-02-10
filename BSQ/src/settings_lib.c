@@ -6,9 +6,7 @@ int ft_parse_settings(t_settings **settings, char *buffer)
 	t_settings *sett;
 
 	sett = *settings;
-
 	size = ft_strlen(buffer);
-
 	if (size < 4 || size > 13)
 		return (0);
 	sett->empty = buffer[size - 3];
@@ -22,57 +20,72 @@ int ft_parse_settings(t_settings **settings, char *buffer)
 	return (1);
 }
 
-int count_width(t_settings **sett, const char *buffer, int read_bytes, int n_count)
+char *append_to_line(char *line, int size, char ch)
 {
-	int n_index;
-	int n_index2;
-	t_settings *settings;
+	char *tmp;
+	int index;
 
-	settings = *sett;
-	if ((n_index = ft_index_of(buffer, '\n', 0)) >= 0)
+	index = 0;
+	tmp = (char *) malloc(sizeof(char) * size);
+	while (index < size)
 	{
-		if (n_count == 0)
-		{
-			if ((n_index2 = ft_index_of(buffer, '\n', n_index + 1)) > 0)
-			{
-				n_count++;
-				settings->width += n_index2 - (n_index + 1);
-			}
-			else
-				settings->width += read_bytes - (n_index + 1);
-		}
-		else
-			settings->width += n_index;
-		n_count++;
+		tmp[index] = line[index];
+		index++;
 	}
-	else
-		settings->width += read_bytes;
-	return (n_count);
+	if (line)
+		free(line);
+	index = 0;
+	line = (char *) malloc(sizeof(char) * size + 1);
+	while (index < size)
+	{
+		line[index] = tmp[index];
+		index++;
+	}
+	line[index] = ch;
+	free(tmp);
+	return (line);
 }
 
-int ft_get_settings(t_settings **sett, char *file)
+int read_settings(int fd, t_settings *settings)
 {
-	t_settings *settings;
 	char *buffer;
-	int fd;
-	int read_bytes;
-	int n_count;
+	char *line;
+	int size;
 
-	settings = *sett;
-	if ((fd = ft_try_open_file(file)) < 0)
-		return fd;
-
-	buffer = (char *) malloc(sizeof(char) * BYTE_COUNT);
-	ft_fill_str(buffer, BYTE_COUNT);
-	n_count = 0;
-	while ((read_bytes = read(fd, buffer, BYTE_COUNT)) != 0)
+	size = 0;
+	line = 0;
+	buffer = (char *) malloc(sizeof(char));
+	while (read(fd, buffer, 1) != 0)
 	{
-		ft_parse_settings(&settings, buffer);
-		n_count = count_width(&settings, buffer, read_bytes, n_count);
-		if (n_count > 1)
+		if (buffer[0] == '\n')
 			break;
+		line = append_to_line(line, size, buffer[0]);
+		size++;
 	}
-
 	free(buffer);
-	return close(fd);
+	if (!settings || !ft_parse_settings(&settings, line))
+	{
+		return (0);
+	}
+	return (1);
+}
+
+char *read_first_line(int fd)
+{
+	char *buffer;
+	char *line;
+	int size;
+
+	size = 0;
+	line = 0;
+	buffer = (char *) malloc(sizeof(char));
+	while (read(fd, buffer, 1) != 0)
+	{
+		if (buffer[0] == '\n')
+			break;
+		line = append_to_line(line, size, buffer[0]);
+		size++;
+	}
+	free(buffer);
+	return (line);
 }

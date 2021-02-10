@@ -25,17 +25,6 @@ int ft_strlen(char *str)
 	return (count);
 }
 
-int ft_index_of(const char *str, char ch, int index)
-{
-	while (str[index] != '\0')
-	{
-		if (str[index] == ch)
-			return (index);
-		index++;
-	}
-	return (-1);
-}
-
 int ft_strcmp(char *s1, char *s2)
 {
 	int index;
@@ -44,6 +33,11 @@ int ft_strcmp(char *s1, char *s2)
 	while (s1[index] == s2[index] && s1[index] != '\0' && s2[index] != '\0')
 		index++;
 	return (s1[index] - s2[index]);
+}
+
+void ft_putchar(char ch)
+{
+	write(1, &ch, 1);
 }
 
 void ft_putstr(char *str)

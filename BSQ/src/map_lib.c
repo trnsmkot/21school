@@ -1,38 +1,29 @@
 #include "../include/bsq.h"
 
-#include <printf.h> // FIXME
-
 void ft_print_filled_map(int **matrix, t_settings *settings)
 {
-	int i;
-	int j;
-
-	printf("%lu %lu [%c] [%c] [%c]\n", settings->height, settings->width, settings->empty, settings->obstacle, settings->full);
+	unsigned long  i;
+	unsigned long  j;
 
 	i = 0;
 	while (i < settings->height)
 	{
 		j = 0;
-		printf("%d: ", i);
 		while (j < settings->width)
 		{
 			if (matrix[i][j] == -1)
-			{
-				printf("%c ",settings->full);
-			}
+				ft_putchar(settings->full);
 			else
 			{
-				if (matrix[i][j] == 0) {
-					printf("%c ",settings->obstacle);
-				} else {
-					printf("%c ",settings->empty);
-				}
+				if (matrix[i][j] == 0)
+					ft_putchar(settings->obstacle);
+				else
+					ft_putchar(settings->empty);
 			}
-
 			j++;
 		}
 		free(matrix[i]);
-		printf("\n");
+		ft_putchar('\n');
 		i++;
 	}
 	free(matrix);
@@ -40,8 +31,8 @@ void ft_print_filled_map(int **matrix, t_settings *settings)
 
 void ft_scan_map(int **matrix, t_settings *settings)
 {
-	int i;
-	int j;
+	unsigned long  i;
+	unsigned long  j;
 
 	i = 1;
 	while (i < settings->height)
@@ -65,7 +56,7 @@ void ft_scan_map(int **matrix, t_settings *settings)
 	}
 }
 
-void process_map_item(int obstacle, int *index_x, int *index_y, int **matrix)
+void process_map_item(int obstacle, unsigned long  *index_x, unsigned long  *index_y, int **matrix)
 {
 	if (obstacle)
 		matrix[*index_y][*index_x] = 0;
@@ -76,7 +67,7 @@ void process_map_item(int obstacle, int *index_x, int *index_y, int **matrix)
 	*index_x += 1;
 }
 
-void down_vertical(int *index_x, int *index_y)
+void down_vertical(unsigned long  *index_x, unsigned long  *index_y)
 {
 	*index_y += 1;
 	*index_x = 0;
