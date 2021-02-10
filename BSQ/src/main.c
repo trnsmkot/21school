@@ -66,7 +66,7 @@ void read_map_from_files(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
 	argc = 2;
-	argv[1] = "/Users/hedgi/CLionProjects/21school/BSQ/map.txt";
+	argv[1] = "/Users/stass/_github2/BSQ/map.txt";
 //	argv[2] = "/Users/hedgi/CLionProjects/21school/BSQ/map2.txt";
 //	argv[3] = "/Users/hedgi/CLionProjects/21school/BSQ/map3.txt";
 

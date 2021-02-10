@@ -52,7 +52,7 @@ int fill_matrix(int **matrix, t_settings *settings, int fd);
 // map_lib.x
 void ft_print_filled_map(int **matrix, t_settings *settings);
 void ft_scan_map(int **matrix, t_settings *settings);
-void process_map_item(int obstacle, unsigned long  *index_x, unsigned long  *index_y, int **matrix);
-void down_vertical(unsigned long  *index_x, unsigned long  *index_y);
+void process_map_item(int obstacle,int  *index_x, int  *index_y, int **matrix);
+void down_vertical(int  *index_x, int  *index_y);
 
 #endif

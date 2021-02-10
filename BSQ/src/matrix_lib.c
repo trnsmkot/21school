@@ -10,8 +10,8 @@ int check_item(char ch, t_settings *settings)
 int read_and_fill(int fd, char *buffer, int **matrix, t_settings *settings)
 {
 	int read_bytes;
-	unsigned long index_x;
-	unsigned long index_y;
+	int index_x;
+	int index_y;
 	int index;
 
 	index_y = 1;
@@ -22,14 +22,25 @@ int read_and_fill(int fd, char *buffer, int **matrix, t_settings *settings)
 		while (index < read_bytes)
 		{
 			if (buffer[index] == '\n')
-				if (index_x != (settings->width))
+				if ((unsigned long)index_x != (settings->width))
 					return (0);
 				else
 					down_vertical(&index_x, &index_y);
-			else if (index_x > settings->width - 1 || index_y > settings->height - 1 || !check_item(buffer[index], settings))
+			else if ((unsigned long)index_x > settings->width - 1 || (unsigned long)index_y > settings->height - 1 || !check_item(buffer[index], settings))
 				return (0);
 			else
+			{
+				if (buffer[index_x] != settings->obstacle && (index_x == 0 || index_y == 0))
+				{
+					if (settings->max_size == 0 || (settings->x > index_x && settings->y > index_y))
+					{
+						settings->x = index_x;
+						settings->y = index_y;
+						settings->max_size = 1;
+					}
+				}
 				process_map_item(buffer[index] == settings->obstacle ? 1 : 0, &index_x, &index_y, matrix);
+			}
 			index++;
 		}
 	}
@@ -56,13 +67,22 @@ void ft_full_map(int **matrix, t_settings *settings)
 
 int fill_first_line_matrix(int **matrix, t_settings *settings, const char *line)
 {
-	unsigned long index_x = 0;
-	unsigned long index_y = 0;
+	int index_x = 0;
+	int index_y = 0;
 
-	while (index_x < settings->width)
+	while ((unsigned long)index_x < settings->width)
 	{
 		if (!check_item(line[index_x], settings))
 			return (0);
+		if (line[index_x] != settings->obstacle && (index_x == 0 || index_y == 0))
+		{
+			if (settings->max_size == 0 || (settings->x > index_x && settings->y > index_y))
+			{
+				settings->x = index_x;
+				settings->y = index_y;
+				settings->max_size = 1;
+			}
+		}
 		process_map_item(line[index_x] == settings->obstacle ? 1 : 0, &index_x, &index_y, matrix);
 	}
 	return (1);
