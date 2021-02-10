@@ -35,7 +35,8 @@ char *append_to_line(char *line, int size, char ch)
 	if (line)
 		free(line);
 	index = 0;
-	line = (char *) malloc(sizeof(char) * size + 1);
+	line = (char *) malloc(sizeof(char) * size + 2);
+	ft_fill_str(line, size + 2);
 	while (index < size)
 	{
 		line[index] = tmp[index];
