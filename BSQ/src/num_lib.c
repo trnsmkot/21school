@@ -1,9 +1,9 @@
 #include "../include/bsq.h"
 
-int ft_get_num(const char *buffer, int size)
+unsigned long ft_get_num(const char *buffer, int size)
 {
 	int index;
-	int sum;
+	unsigned long sum;
 
 	sum = 0;
 	index = 0;

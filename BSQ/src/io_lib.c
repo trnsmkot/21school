@@ -50,6 +50,9 @@ t_settings *create_settings()
 	settings = (t_settings *) malloc(sizeof(t_settings));
 	if (settings)
 	{
+		settings->max_size = 0;
+		settings->x = 0;
+		settings->y = 0;
 		settings->height = 0;
 		settings->width = 0;
 	}

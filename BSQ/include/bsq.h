@@ -27,7 +27,7 @@ int	ft_strcmp(char *s1, char *s2);
 void ft_putstr(char *str);
 
 // num_lib.c
-int ft_get_num(const char *buffer, int size);
+unsigned long ft_get_num(const char *buffer, int size);
 int ft_get_min(int item_1, int item_2, int item_3);
 void ft_fill_num(int *buffer, unsigned long size);
 

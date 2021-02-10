@@ -6,18 +6,19 @@ int ft_parse_settings(t_settings **settings, char *buffer)
 	t_settings *sett;
 
 	sett = *settings;
-	if (sett->height == 0)
-	{
-		if ((size = ft_index_of(buffer, '\n', 0)) < 0)
-			return (0);
 
-		sett->empty = buffer[size - 3];
-		sett->obstacle = buffer[size - 2];
-		sett->full = buffer[size - 1];
-		sett->height = ft_get_num(buffer, size - 3);
-		if (sett->height < 1)
-			return (0);
-	}
+	size = ft_strlen(buffer);
+
+	if (size < 4 || size > 13)
+		return (0);
+	sett->empty = buffer[size - 3];
+	sett->obstacle = buffer[size - 2];
+	sett->full = buffer[size - 1];
+	if (sett->empty == sett->obstacle || sett->obstacle == sett->full || sett->full == sett->empty)
+		return (0);
+	sett->height = ft_get_num(buffer, size - 3);
+	if (sett->height < 1)
+		return (0);
 	return (1);
 }
 
