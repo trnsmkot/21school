@@ -9,13 +9,10 @@ int read_map(int fd, t_settings *settings)
 	if (!read_settings(fd, settings))
 		return (0);
 	line = read_first_line(fd);
-	if ((settings->width = ft_strlen(line)) == 0)
-		return (0);
-	if (!(matrix = malloc_matrix(settings)))
+	if ((settings->width = ft_strlen(line)) == 0 || !(matrix = malloc_matrix(settings)))
 		return (0);
 	fill_empty_matrix(matrix, settings);
-	fill_first_line_matrix(matrix, settings, line);
-	if (!fill_matrix(matrix, settings, fd))
+	if(!fill_first_line_matrix(matrix, settings, line) || !fill_matrix(matrix, settings, fd))
 		return (0);
 	else
 	{

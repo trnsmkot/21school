@@ -46,7 +46,7 @@ char *read_first_line(int fd);
 // matrix_lib.c
 int read_and_fill(int fd, char *buffer, int **matrix, t_settings *settings);
 void ft_full_map(int **matrix, t_settings *settings);
-void fill_first_line_matrix(int **matrix, t_settings *settings, const char *line);
+int fill_first_line_matrix(int **matrix, t_settings *settings, const char *line);
 int fill_matrix(int **matrix, t_settings *settings, int fd);
 
 // map_lib.x
