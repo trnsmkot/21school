@@ -64,9 +64,7 @@ int read_settings(int fd, t_settings *settings)
 	}
 	free(buffer);
 	if (!settings || !ft_parse_settings(&settings, line))
-	{
 		return (0);
-	}
 	return (1);
 }
 

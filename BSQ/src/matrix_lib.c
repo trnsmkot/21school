@@ -4,7 +4,7 @@ int read_and_fill(int fd, char *buffer, int **matrix, t_settings *settings)
 {
 	int read_bytes;
 	unsigned long index_x;
-	unsigned long  index_y;
+	unsigned long index_y;
 	int index;
 
 	index_y = 1;
@@ -48,12 +48,11 @@ void ft_full_map(int **matrix, t_settings *settings)
 
 void fill_first_line_matrix(int **matrix, t_settings *settings, const char *line)
 {
-	unsigned long  index_x = 0;
-	unsigned long  index_y = 0;
+	unsigned long index_x = 0;
+	unsigned long index_y = 0;
+
 	while (index_x < settings->width)
-	{
 		process_map_item(line[index_x] == settings->obstacle ? 1 : 0, &index_x, &index_y, matrix);
-	}
 }
 
 int fill_matrix(int **matrix, t_settings *settings, int fd)

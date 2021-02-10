@@ -28,7 +28,7 @@ int **malloc_matrix(t_settings *settings)
 void fill_empty_matrix(int **matrix, t_settings *settings)
 {
 	unsigned long i;
-	unsigned long  j;
+	unsigned long j;
 
 	i = 0;
 	while (i < settings->height)

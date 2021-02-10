@@ -5,7 +5,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# define BYTE_COUNT 20
+# define BYTE_COUNT 255
+# define MAP_ERROR_MSG "map error\n"
 
 typedef struct s_settings
 {
@@ -23,7 +24,6 @@ typedef struct s_settings
 void ft_fill_str(char *buffer, int size);
 int	ft_strlen(char *str);
 void ft_putchar(char ch);
-int	ft_strcmp(char *s1, char *s2);
 void ft_putstr(char *str);
 
 // num_lib.c

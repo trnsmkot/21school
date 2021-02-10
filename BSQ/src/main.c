@@ -28,19 +28,21 @@ int read_map(int fd, t_settings *settings)
 	return (1);
 }
 
-void read_map_from_console() {
+void read_map_from_console()
+{
 	t_settings *settings;
 
 	settings = create_settings();
 	if (settings)
 	{
 		if (!read_map(STDIN_FILENO, settings))
-			ft_putstr("map error\n");
+			ft_putstr(MAP_ERROR_MSG);
 		free(settings);
 	}
 }
 
-void read_map_from_files(int argc, char *argv[]) {
+void read_map_from_files(int argc, char *argv[])
+{
 	int fd;
 	int index;
 	t_settings *settings;
@@ -49,14 +51,14 @@ void read_map_from_files(int argc, char *argv[]) {
 	while (index < argc)
 	{
 		if ((fd = ft_try_open_file(argv[index])) < 0)
-			ft_putstr("map error\n");
+			ft_putstr(MAP_ERROR_MSG);
 		else
 		{
 			settings = create_settings();
 			if (settings)
 			{
 				if (!read_map(fd, settings))
-					ft_putstr("map error\n");
+					ft_putstr(MAP_ERROR_MSG);
 				free(settings);
 			}
 		}
@@ -66,8 +68,8 @@ void read_map_from_files(int argc, char *argv[]) {
 
 int main(int argc, char *argv[])
 {
-//	argc = 4;
-//	argv[1] = "/Users/hedgi/CLionProjects/21school/BSQ/map.txt";
+	argc = 2;
+	argv[1] = "/Users/hedgi/CLionProjects/21school/BSQ/map.txt";
 //	argv[2] = "/Users/hedgi/CLionProjects/21school/BSQ/map2.txt";
 //	argv[3] = "/Users/hedgi/CLionProjects/21school/BSQ/map3.txt";
 

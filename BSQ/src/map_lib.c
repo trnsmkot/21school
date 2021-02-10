@@ -2,8 +2,8 @@
 
 void ft_print_filled_map(int **matrix, t_settings *settings)
 {
-	unsigned long  i;
-	unsigned long  j;
+	unsigned long i;
+	unsigned long j;
 
 	i = 0;
 	while (i < settings->height)
@@ -31,8 +31,8 @@ void ft_print_filled_map(int **matrix, t_settings *settings)
 
 void ft_scan_map(int **matrix, t_settings *settings)
 {
-	unsigned long  i;
-	unsigned long  j;
+	unsigned long i;
+	unsigned long j;
 
 	i = 1;
 	while (i < settings->height)
@@ -56,7 +56,7 @@ void ft_scan_map(int **matrix, t_settings *settings)
 	}
 }
 
-void process_map_item(int obstacle, unsigned long  *index_x, unsigned long  *index_y, int **matrix)
+void process_map_item(int obstacle, unsigned long *index_x, unsigned long *index_y, int **matrix)
 {
 	if (obstacle)
 		matrix[*index_y][*index_x] = 0;
@@ -67,7 +67,7 @@ void process_map_item(int obstacle, unsigned long  *index_x, unsigned long  *ind
 	*index_x += 1;
 }
 
-void down_vertical(unsigned long  *index_x, unsigned long  *index_y)
+void down_vertical(unsigned long *index_x, unsigned long *index_y)
 {
 	*index_y += 1;
 	*index_x = 0;
