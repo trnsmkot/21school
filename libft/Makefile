@@ -1,26 +1,30 @@
-SRC_DIR 	= "."
-EXCLUDE_DIR = "./cmake-build-debug/*"
-INC_DIR 	= "."
-SRC_FILES 	= $(shell find $(SRC_DIR) -type f -name "*.c" ! -path $(EXCLUDE_DIR))
-OBJ_FILES 	= $(shell find $(SRC_DIR) -type f -name "*.o" ! -path $(EXCLUDE_DIR))
-OBJ			= $(SRC_FILES:%.c=%.o)
-NAME 		= libft.a
-CFLAGS		= -Wall -Wextra -Werror
+SRC_DIR 		= "."
+EXCLUDE_DIR 	= "./cmake-build-debug/*"
+INC_DIR 		= "."
+SRC_FILES 		= main.c
+OBJ_FILES		= $(SRC_FILES:.c=.o)
+SRC_FILES_BONUS	=
+OBJ_FILES_BONUS	= $(SRC_FILES_BONUS:.c=.o)
+NAME 			= libft.a
+CFLAGS			= -Wall -Wextra -Werror
 
-all: 		$(NAME)
+all: 			$(NAME)
 
-$(NAME):	$(OBJ)
-			ar rc $(NAME) $(OBJ_FILES)
+$(NAME):		$(OBJ_FILES)
+				ar rcs $(NAME) $(OBJ_FILES)
 
-$(OBJ): 	$(FILES)
-			gcc $(CFLAGS) -I. -c $(SRC_FILES)
+$(OBJ_FILES): 	$(SRC_FILES)
+				gcc $(CFLAGS) -I. -c $(SRC_FILES)
+
+bonus:			$(OBJ_FILES) $(OBJ_FILES_BONUS)
+				ar rcs $(NAME) $(OBJ_FILES) $(OBJ_FILES_BONUS)
 
 clean:
-			rm -f $(OBJ_FILES)
+				rm -f $(OBJ_FILES)
 
-fclean:		clean
-			rm -f $(NAME)
+fclean:			clean
+				rm -f $(NAME)
 
-re:			clean all
+re:				clean all
 
-.PHONY:     all clean fclean re
+.PHONY:     	all clean fclean re
