@@ -1,7 +1,8 @@
 SRC_DIR 		= "."
 EXCLUDE_DIR 	= "./cmake-build-debug/*"
 INC_DIR 		= "."
-SRC_FILES 		= ft_memset.c
+SRC_FILES		=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
+
 OBJ_FILES		= $(SRC_FILES:.c=.o)
 SRC_FILES_BONUS	=
 OBJ_FILES_BONUS	= $(SRC_FILES_BONUS:.c=.o)
